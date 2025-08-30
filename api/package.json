@@ -1,12 +1,20 @@
 {
   "name": "api",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "db:generate":"drizzle-kit generate",
+    "db:migrate":"tsx --require ./src/env.ts src/db/migrate.ts"
   },
   "dependencies": {
-    "hono": "^4.9.4"
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.5",
+    "hono": "^4.9.4",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/pg": "^8.15.5",
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.20.5"
   }
 }
