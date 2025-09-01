@@ -3,8 +3,11 @@ import { logger } from "hono/logger";
 import { cors } from "hono/cors";
 
 import { db } from "./db/migrate";
+
 import genresRouter from "./routes/genres";
 import authorRouter from "./routes/authors";
+import bookRouter from "./routes/book";
+import authRouter from "./routes/auth";
 
 const app = new Hono();
 
@@ -12,7 +15,9 @@ app.use(logger());
 app.use("/api/*", cors());
 
 app.route("/api/genres", genresRouter);
-app.route("/api/authors",authorRouter)
+app.route("/api/authors", authorRouter);
+app.route("/api/books", bookRouter);
+app.route("/api/auth", authRouter);
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
