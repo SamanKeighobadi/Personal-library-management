@@ -31,6 +31,7 @@ export const authServices = {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        role:user.role
       });
     return newUser;
   },

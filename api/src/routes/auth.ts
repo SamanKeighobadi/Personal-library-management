@@ -31,6 +31,7 @@ authRouter.post("/login", zValidator("json", loginSchema), async (c) => {
       id: foundUser.id,
       firstName: foundUser.firstName,
       lastName: foundUser.lastName,
+      role:foundUser.role
     },
   } as TokenPayload;
 
@@ -65,6 +66,7 @@ authRouter.post("/register", zValidator("json", registerSchema), async (c) => {
       id: newUser.id,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
+      role:newUser.role
     },
   } as TokenPayload;
 

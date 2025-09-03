@@ -8,6 +8,7 @@ import genresRouter from "./routes/genres";
 import authorRouter from "./routes/authors";
 import bookRouter from "./routes/book";
 import authRouter from "./routes/auth";
+import userRouter from "./routes/user";
 
 const app = new Hono();
 
@@ -18,6 +19,7 @@ app.route("/api/genres", genresRouter);
 app.route("/api/authors", authorRouter);
 app.route("/api/books", bookRouter);
 app.route("/api/auth", authRouter);
+app.route("/api/admin/users",userRouter)
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");

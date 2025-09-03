@@ -4,37 +4,41 @@ import { db } from "../db/migrate";
 import { eq } from "drizzle-orm";
 import { zValidator } from "@hono/zod-validator";
 import { genresSchema } from "../validations/genres.schema";
+import { genresServices } from "../services/genres.services";
+import { HTTPException } from "hono/http-exception";
+import { adminOnly, bearerAuth } from "../middlewares";
 
 const genresRouter = new Hono();
 
 genresRouter.get("/", async (c) => {
-  const genres = await db.query.genres.findMany();
+  
+  const genres = await genresServices.getAllGenres()
 
-  c.json(genres, 200);
+  return c.json(genres, 200);
 });
 
 genresRouter.get("/:id", async (c) => {
   const genreId = parseInt(c.req.param("id"));
-  const genre = await db.query.genres.findFirst({
-    where: eq(genres.id, genreId),
-  });
+  
+  const genre = await genresServices.getGenreByID(genreId)
 
   if (!genre) {
-    return c.json({ error: "Genre not found" }, 404);
+    throw new HTTPException(404,{message:"Genre not found!"})
   }
 
   return c.json(genre, 200);
 });
 
-genresRouter.post("/", zValidator("json", genresSchema), async (c) => {
+genresRouter.post("/",bearerAuth,adminOnly, zValidator("json", genresSchema), async (c) => {
   const body = await c.req.valid("json");
 
-  const newGenre = await db.insert(genres).values(body).returning();
+  
+  const newGenre = await genresServices.createGenre(body)
 
   return c.json(newGenre, 201);
 });
 
-genresRouter.delete("/:id", async (c) => {
+genresRouter.delete("/:id",bearerAuth,adminOnly, async (c) => {
   const genreId = parseInt(c.req.param("id"));
 
   if (!genreId) {
