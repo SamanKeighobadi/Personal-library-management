@@ -27,6 +27,7 @@ export const book = pgTable("books",{
     title:varchar("title").notNull(),
     authorId:serial("author_id").references(() => authors.id).notNull(),
     genreId:serial("genre_id").references(() => genres.id).notNull(),
+    publisherId:serial("publisher_id").references(() => publisher.id).notNull(),
     status:statusType("status").notNull(),
     description:text("description").notNull(),
     image:varchar("image").notNull(),
@@ -42,4 +43,12 @@ export const note = pgTable("note",{
     content:text("content").notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
+})
+
+
+export const publisher = pgTable("publisher",{
+  id:serial("id").primaryKey(),
+  title:varchar("title").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 })

@@ -9,6 +9,7 @@ import authorRouter from "./routes/authors";
 import bookRouter from "./routes/book";
 import authRouter from "./routes/auth";
 import userRouter from "./routes/user";
+import publisherRouter from "./routes/publisher";
 
 const app = new Hono();
 
@@ -20,6 +21,7 @@ app.route("/api/authors", authorRouter);
 app.route("/api/books", bookRouter);
 app.route("/api/auth", authRouter);
 app.route("/api/admin/users",userRouter)
+app.route("/api/publishers",publisherRouter)
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");

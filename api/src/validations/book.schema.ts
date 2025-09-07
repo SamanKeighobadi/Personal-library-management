@@ -6,5 +6,6 @@ export const bookSchema =  z.object({
     image:z.string().min(1).max(255),
     authorId:z.number().int().positive(),
     genreId:z.number().int().positive(),
+    publisherId:z.number().int().positive(),
     status:z.enum(["read",'reading','unread'])
 })
