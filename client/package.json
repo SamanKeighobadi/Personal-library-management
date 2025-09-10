@@ -16,6 +16,7 @@
   "dependencies": {
     "@radix-ui/themes": "^3.2.1",
     "@tailwindcss/vite": "^4.1.13",
+    "axios": "^1.11.0",
     "pinia": "^3.0.3",
     "tailwindcss": "^4.1.13",
     "vee-validate": "^4.15.1",
