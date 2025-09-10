@@ -26,7 +26,7 @@ const props = defineProps<BookCardProps>()
             <p>{{ props.publisher }}</p>
             <p>{{ props.author }}</p>
             <div class="card-actions justify-end">
-                <BaseButton color="neutral">مشاهده</BaseButton>
+                <BaseButton color="info">مشاهده</BaseButton>
             </div>
         </div>
     </div>
