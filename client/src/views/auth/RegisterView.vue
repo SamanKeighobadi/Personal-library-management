@@ -17,9 +17,8 @@ const showPassword = ref(false)
 const errorStyleClasses = computed(() => "text-red-600 text-sm")
 
 
-const { handleSubmit ,isSubmitting} = useForm({
+const { handleSubmit, isSubmitting } = useForm({
     validationSchema: toTypedSchema(registerSchema),
-
 })
 
 
@@ -32,7 +31,7 @@ const { value: confirmPassword, errorMessage: confirmPasswordError } = useField<
 
 
 const onSubmit = handleSubmit((formValues) => {
-    console.log('Form submitted:', formValues)
+
     const { email, password, firstName, lastName } = formValues
 
     const data: RegisterBody = {
@@ -78,7 +77,8 @@ const onSubmit = handleSubmit((formValues) => {
                 </div>
 
                 <div class="pb-5 ">
-                    <BaseButton color="neutral" :loading="isSubmitting" type="submit" class="btn btn-info text-white w-50">ثبت نام</BaseButton>
+                    <BaseButton color="neutral" :loading="isSubmitting" type="submit"
+                        class="btn btn-info text-white w-50">ثبت نام</BaseButton>
                 </div>
             </form>
         </div>

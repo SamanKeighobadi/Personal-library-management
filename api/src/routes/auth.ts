@@ -37,7 +37,7 @@ authRouter.post("/login", zValidator("json", loginSchema), async (c) => {
 
   const token = generateToken(payload, { expiresIn: "1d" });
 
-  return c.json(token, 200);
+  return c.json({token:token}, 200);
 });
 
 authRouter.post("/register", zValidator("json", registerSchema), async (c) => {
