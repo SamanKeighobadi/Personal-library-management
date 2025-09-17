@@ -8,10 +8,11 @@ interface InputProps {
     size?: DaisyUISizes;
     type?: InputType;
     placeholder?: string
-    disabled?: boolean
+    disabled?: boolean;
+    label?:string;
 }
 
-const { color, placeholder, size, type } = defineProps<InputProps>()
+const { color, placeholder, size, type,label } = defineProps<InputProps>()
 const model = defineModel<string>({ default: '' })
 
 
@@ -24,6 +25,14 @@ const inputClasses = [
 </script>
 
 <template>
+  <label :class="['input', color ? `input-${color}` : '', size ? `input-${size}` : '']">
+    <span v-if="label" class="label">{{ label }}</span>
+    <input
+      :type="type"
+      :placeholder="placeholder"
 
-    <input :type="type" :placeholder="placeholder" :class="inputClasses" :disabled="disabled" v-model="model">
+      :disabled="disabled"
+      v-model="model"
+    />
+  </label>
 </template>

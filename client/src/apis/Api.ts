@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-axios.defaults.url = import.meta.env.BASE_URL;
+axios.defaults.baseURL = "http://localhost:3000/api";
 
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
